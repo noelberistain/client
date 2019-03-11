@@ -1,0 +1,39 @@
+.navbar {
+    width: 70%;
+    margin: auto;
+}
+
+.nav-item {
+    padding: 0 80px;
+}
+
+#container {
+    margin-top: 5%;
+    padding: inherit;
+    width: 60%;
+}
+
+ul#init {
+    margin: 0 auto;
+}
+
+.rounded-circle {
+    width: 4em;
+    margin-right: 1em;
+}
+
+.title {
+    border: 1px double black;
+}
+
+aside {
+    float: right;
+}
+
+.profile{
+    width: auto;
+}
+
+.h2-profile{
+    display: inline;
+}
