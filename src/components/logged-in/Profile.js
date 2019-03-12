@@ -25,7 +25,7 @@ export class Profile extends Component {
                 </div>
                 <div className="container" id="container">
                     <div className="title profile">
-                        <ContactsList/>
+                        <ContactsList email={user.email} />
                     </div>
                 </div>
             </>

@@ -13,9 +13,11 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case ADD_FRIEND:
-            return action.payload;
+            return {
+                ...state,
+                contacts: [...state.contacts,action.payload]
+                }
         case GET_FRIENDS:
-        console.log('payload: ',action.payload)
             return {
                 ...state,
                 contacts: action.payload,

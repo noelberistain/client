@@ -63,32 +63,18 @@ export const validatingUser = email => {
     return axios.get("/api/auth/validatingUser", { params: { email } });
 };
 
-export const getInfo = () => {
-    // getting all info from users
-    return axios.get("/api/notification/allUsers");
-};
-
-export const getFriends = () => dispatch => {
+export const getFriends = () => async dispatch => {
     dispatch(setContactsLoading());
     const getData = () => axios.get("/api/notification/myfriends");
-    const getInfo = (element) => axios.get("/api/auth/friendsInfo",{params: element})
+    const friends = await getData()
 
-    const friends = async () => {
-        let aot=[]
-        let friends = await getData();
-        for (let index = 0; index < friends.data.length; index++) {
-            const element = friends.data[index];
-            const fullFriend = await getInfo(element)
-            aot.push(fullFriend.data)
-        }
+    console.log(" ALL OF THEM - - - -- - - - -\n", friends.data)
 
-        console.log(" ALL OF THEM - - - -- - - - -\n",aot)
-        dispatch({
-            type: GET_FRIENDS,
-            payload: aot
-        });
-    };
-    friends();
+    dispatch({
+        type: GET_FRIENDS,
+        payload: friends.data
+    });
+
     //sending everything from here to auth to get the whole info together
 };
 
@@ -98,8 +84,24 @@ export const setContactsLoading = () => {
     };
 };
 
-export const addFriend = info => {
-    axios.post("/api/notification/addContact", info);
+export const addFriend = (info) => async dispatch => {
+
+    const sendFriend = () => axios.post("/api/notification/addContact", info.data)
+    const newFriend = await sendFriend()    // NEW FRIEND represents user object at notification DB
+    const { contacts } = newFriend.data       // user id and contacts array with friend's ids and status
+    //user contacts array
+    contacts.forEach(value => {
+        if (value.contactID == info.data._id)
+            info.data.status = value.status
+    })
+
+    console.log("info with status", info.data)
+    let { userId, ...fullFriend } = info.data
+
+    dispatch({
+        type: ADD_FRIEND,
+        payload: fullFriend
+    })
 };
 
 export const logoutUser = history => dispatch => {

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import isEmpty from "../../validation/is-empty";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
     addFriend,
-    validatingUser,
-    getFriends
+    validatingUser
 } from "../../actions/authentication";
 class AddContact extends Component {
     constructor(props) {
@@ -20,38 +21,22 @@ class AddContact extends Component {
         });
     }
 
-    async userExist() {
-        const info = await validatingUser();
-        if (info) {
-            console.log(info)
-            //info => value from validating User (active user)
-            const ids = [],
-                localFriends = await getFriends(info.data._id);
-            const { contacts } = localFriends.data;
-            for (const key in contacts) {
-                if (contacts.hasOwnProperty(key)) {
-                    ids.push(contacts[key].contactID);
-                }
-            }
-            return ids;
-        } else this.props.history.push("/");
-    }
-
     async handleSubmit(e) {
         e.preventDefault();
-        const contactsIDS = await this.userExist();
-        const ownEmail = this.props.ownEmail;
+        const ownEmail = this.props.info;
         const email = this.state.email;
+        const { contacts } = this.props.contacts;
+        const idContacts = contacts.map(value => value._id)
         if (!isEmpty(email) && email !== ownEmail) {
             // identifier is the retrieved id from db at notification service
-            const identifier = await validatingUser(email);
-            if (!contactsIDS.includes(identifier.data._id)) {
-            addFriend(identifier.data);
-        }
-        else{
-            console.log("PENDEJAZO this user's your friend already")
-        }
-    } else {
+            const identifiers = await validatingUser(email);
+            if (!idContacts.includes(identifiers.data._id)) {
+                this.props.addFriend(identifiers);
+            }
+            else {
+                console.log("PENDEJAZO this user's your friend already")
+            }
+        } else {
             console.log(`something is wrong with the inputed value /
             or might have it already -> ${email}`);
         }
@@ -80,4 +65,12 @@ class AddContact extends Component {
     }
 }
 
-export default AddContact;
+AddContact.propTypes = {
+    addFriend: PropTypes.func.isRequired,
+    contacts: PropTypes.object.isRequired
+}
+
+// const mapStateToProps = state => ({
+//     contatcs: state.contacts
+// })
+export default connect(state => ({ contacts: state.contacts }), { addFriend })(AddContact);
