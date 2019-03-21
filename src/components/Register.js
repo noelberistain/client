@@ -62,8 +62,8 @@ class Register extends Component {
 
     render() {
         console.log(this.props);
-        const { name, password, email, errors, password_confirm } = this.state;
-        console.log("STATE => ", name, password, password_confirm, email);
+        const { name, email, errors} = this.state;
+        console.log("STATE => ", name,email);
         return <>
         <InitNav/>
             <div className="container" id="container">

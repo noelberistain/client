@@ -6,14 +6,14 @@ import {
     addFriend,
     validatingUser
 } from "../../actions/authentication";
+
 class AddContact extends Component {
     constructor(props) {
         super(props);
         this.state = { email: "" };
-
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    }    
 
     handleInputChange(e) {
         this.setState({
@@ -23,15 +23,18 @@ class AddContact extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        const ownEmail = this.props.info;
+        const ownEmail = this.props.info.user.email;
         const email = this.state.email;
+        const { user} = this.props.info;
+        console.log(this.props.info) //.user.id
         const { contacts } = this.props.contacts;
         const idContacts = contacts.map(value => value._id)
         if (!isEmpty(email) && email !== ownEmail) {
             // identifier is the retrieved id from db at notification service
             const identifiers = await validatingUser(email);
+			console.log('TCL: AddContact -> handleSubmit -> identifiers', identifiers)
             if (!idContacts.includes(identifiers.data._id)) {
-                this.props.addFriend(identifiers);
+                this.props.addFriend({...identifiers,...user});
             }
             else {
                 console.log("PENDEJAZO this user's your friend already")
@@ -41,7 +44,7 @@ class AddContact extends Component {
             or might have it already -> ${email}`);
         }
     }
-
+    
     render() {
         return (
             <div className="container" id="container">
@@ -64,7 +67,6 @@ class AddContact extends Component {
         );
     }
 }
-
 AddContact.propTypes = {
     addFriend: PropTypes.func.isRequired,
     contacts: PropTypes.object.isRequired
