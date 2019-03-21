@@ -17,6 +17,14 @@ ul#init {
     margin: 0 auto;
 }
 
+ul.contact{
+    list-style-type: none;
+}
+
+img.friend-image{
+    width: 1.5em;
+}
+
 .rounded-circle {
     width: 4em;
     margin-right: 1em;

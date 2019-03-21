@@ -3,7 +3,7 @@ import {socket,initSocket} from "./sockets";
 import {
     GET_ERRORS,
     SET_CURRENT_USER,
-    // ADD_FRIEND,
+    ADD_FRIEND,
     GET_FRIENDS,
     CONTACTS_LOADING
 } from "./types";
@@ -72,6 +72,7 @@ export const getFriends = () => async dispatch => {
         type: GET_FRIENDS,
         payload: friends.data
     });
+    // initSocket()
 };
 
 export const setContactsLoading = () => {
@@ -91,13 +92,12 @@ export const addFriend = info => async dispatch => {
         if (value.contactID === info.data._id) info.data.status = value.status;
     });
 
-    // let { userId, ...fullFriend } = info.data;
-	// console.log('TCL: userId, ...fullFriend', userId, fullFriend)
+    let { userId, ...fullFriend } = info.data;
     
-    // dispatch({
-    //     type: ADD_FRIEND,
-    //     payload: fullFriend
-    // });
+    dispatch({
+        type: ADD_FRIEND,
+        payload: fullFriend
+    });
     initSocket()
 };
 

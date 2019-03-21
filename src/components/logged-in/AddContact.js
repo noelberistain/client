@@ -50,7 +50,7 @@ class AddContact extends Component {
             <div className="container" id="container">
                 <div className="title">
                     <form onSubmit={this.handleSubmit}>
-                        <h3>Add a friend:</h3>
+                        <h5>Add a friend:</h5>
                         <div className="form-group">
                             <input
                                 type="email"

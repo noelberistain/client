@@ -14,7 +14,7 @@ export class Profile extends Component {
                             title={user.name}
                             className="rounded-circle"
                         />
-                        <h2 className="h2-profile"> Hello {user.name}</h2>
+                        <h3 className="h2-profile"> Hello {user.name}</h3>
                     </div>
                     <div>
                         <label htmlFor="name">Name: {user.name}</label>
