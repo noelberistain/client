@@ -12,7 +12,7 @@ export default function Contact(props) {
                 title={contact.name}
                 className="rounded-circle friend-image"
             />
-            {contact.name} | {contact.email} | <Button status= {contact.status.toString()}/>
+            {contact.name} | {contact.email} | <Button status= {contact.status.toString()} id={contact._id}/>
         </li>
     );
     return (

@@ -75,6 +75,10 @@ export const getFriends = () => async dispatch => {
     // initSocket()
 };
 
+export const responseFriendship = (data) => {
+    axios.post("api/notification/responseFriendship", data);
+}
+
 export const setContactsLoading = () => {
     return {
         type: CONTACTS_LOADING

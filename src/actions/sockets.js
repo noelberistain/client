@@ -4,7 +4,7 @@ import { getFriends } from "./authentication";
 
 // export const socket = io({autoConnect:false},{transports:['websocket']});
 //  W O R K S with the PATH flag
-export const socket = io({ path: "/io", autoConnect: false }, { transports: ['websocket'] });
+export const socket = io({ path: "/io", autoConnect: false });
 
 export function initSocket(dispatch) {
 
@@ -16,6 +16,7 @@ export function initSocket(dispatch) {
 
     socket.on("notification", (data) => {
         console.log("NOTIFICATION FROM = ", data)
+        console.log(fire)
         fire(getFriends())
     })
 
