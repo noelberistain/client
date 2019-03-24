@@ -1,6 +1,7 @@
 //initial NAVBAR COMPONENT
 
 import React, { Component } from "react";
+import { Container, Col, NavItem, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -11,24 +12,24 @@ class InitialNav extends Component {
     render() {
 
         return (
-            <React.Fragment>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav ml-auto" id="init">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/">
-                                    Sign In
+            <Container>
+                <Nav pills>
+                    <Col xs="6">
+                        <NavItem>
+                            <Link className="nav-link" to="/">
+                                Sign In
                                 </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/register">
-                                    Sign Up
+                        </NavItem>
+                    </Col>
+                    <Col xs="6">
+                        <NavItem>
+                            <Link className="nav-link" to="/register">
+                                Sign Up
                                 </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </React.Fragment>
+                        </NavItem>
+                    </Col>
+                </Nav>
+            </Container>
         );
     }
 }

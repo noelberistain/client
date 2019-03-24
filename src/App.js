@@ -7,7 +7,6 @@ import store from "./store";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/logged-in/Home"
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import {initSocket} from "../src/actions/sockets"
 initSocket(store.dispatch)
 
@@ -15,7 +14,7 @@ class App extends Component {
   
   render() {
     return (
-      <Provider store={store} initS>
+      <Provider store={store}>
           <Router>
             <Switch>
               <Route exact path="/" component={Login} />

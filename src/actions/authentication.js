@@ -1,5 +1,5 @@
 import axios from "axios";
-import {socket,initSocket} from "./sockets";
+import {socket} from "./sockets";
 import {
     GET_ERRORS,
     SET_CURRENT_USER,
@@ -14,9 +14,8 @@ export const registerUser = (user, history) => dispatch => {
     axios
     .post("/api/auth/register", user)
     .then(res => {
-        const { _id, name, email } = res.data;
-        const user = { _id, name, email };
-        console.log("user", user);
+        const { _id, email } = res.data;
+        const user = { _id, email };
         sendUser(user);
         history.push("/");
     })
@@ -72,11 +71,11 @@ export const getFriends = () => async dispatch => {
         type: GET_FRIENDS,
         payload: friends.data
     });
-    // initSocket()
 };
 
 export const responseFriendship = (data) => {
-    axios.post("api/notification/responseFriendship", data);
+    axios.post("api/notification/responseFriendship", data)
+    .then(data=>console.log(data))
 }
 
 export const setContactsLoading = () => {
@@ -86,7 +85,6 @@ export const setContactsLoading = () => {
 };
 
 export const addFriend = info => async dispatch => {
-	console.log('TCL: info', info)
     const sendFriend = () =>
         axios.post("/api/notification/addContact", info.data);
     const newFriend = await sendFriend(); // NEW FRIEND represents user object at notification DB
@@ -97,12 +95,10 @@ export const addFriend = info => async dispatch => {
     });
 
     let { userId, ...fullFriend } = info.data;
-    
     dispatch({
         type: ADD_FRIEND,
         payload: fullFriend
     });
-    initSocket()
 };
 
 export const logoutUser = history => dispatch => {

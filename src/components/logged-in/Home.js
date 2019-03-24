@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import { Container } from "reactstrap";
 import { validatingUser } from "../../actions/authentication";
-import {socket} from "../../actions/sockets";
+import { socket } from "../../actions/sockets";
 
 import LoggedNav from "./LoggedNav";
 import Profile from "./Profile";
@@ -13,9 +14,9 @@ class Home extends Component {
   }
   async componentDidMount() {
     const info = await validatingUser();
-    const {email} = info.data;
+    const { email } = info.data;
     if (email) {
-      socket.open()
+      socket.open();
       this.setState({
         user: info.data
       });
@@ -26,12 +27,10 @@ class Home extends Component {
 
   render() {
     return (
-      <Fragment>
-        <LoggedNav />
-        <div className="container" id="container">
+        <Container>
+          <LoggedNav />
           <Profile user={this.state.user} />
-        </div>
-      </Fragment>
+        </Container>
     );
   }
 }

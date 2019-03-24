@@ -42,28 +42,8 @@ class Register extends Component {
         this.props.registerUser(user, this.props.history);
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     console.log("REGISTER nextProps: ",nextProps)
-    //     // if (nextProps.auth.isAuthenticated) {
-    //     //     this.props.history.push("/");
-    //     // }
-    //     if (nextProps.errors) {
-    //         this.setState({
-    //             errors: nextProps.errors
-    //         });
-    //     }
-    // }
-
-    // componentDidMount() {
-    //     if (this.props.auth.isAuthenticated) {
-    //         this.props.history.push("/");
-    //     }
-    // }
-
     render() {
-        console.log(this.props);
-        const { name, email, errors} = this.state;
-        console.log("STATE => ", name,email);
+        const { name, email, password, password_confirm, errors} = this.state;
         return <>
         <InitNav/>
             <div className="container" id="container">
@@ -78,7 +58,7 @@ class Register extends Component {
                             })}
                             name="name"
                             onChange={this.handleInputChange}
-                            value={this.state.name}
+                            value={name}
                         />
                         {errors.name && (
                             <div className="invalid-feedback">{errors.name}</div>
@@ -93,7 +73,7 @@ class Register extends Component {
                             })}
                             name="email"
                             onChange={this.handleInputChange}
-                            value={this.state.email}
+                            value={email}
                         />
                         {errors.email && (
                             <div className="invalid-feedback">{errors.email}</div>
@@ -108,7 +88,7 @@ class Register extends Component {
                             })}
                             name="password"
                             onChange={this.handleInputChange}
-                            value={this.state.password}
+                            value={password}
                         />
                         {errors.password && (
                             <div className="invalid-feedback">{errors.password}</div>
@@ -123,7 +103,7 @@ class Register extends Component {
                             })}
                             name="password_confirm"
                             onChange={this.handleInputChange}
-                            value={this.state.password_confirm}
+                            value={password_confirm}
                         />
                         {errors.password_confirm && (
                             <div className="invalid-feedback">{errors.password_confirm}</div>

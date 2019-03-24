@@ -1,24 +1,27 @@
-import React from 'react'
+import React from 'react';
+import { Alert, Col, Row } from "reactstrap";
 import Button from './FriendButton';
+// import AddContact from './AddContact';
+import AddContactModal from './Modal';
 
 export default function Contact(props) {
-    
     const contacts = props.contacts
-    const list = contacts.map( contact => 
-        <li key={contact._id}>
-            <img
-                src={contact.avatar}
-                alt={contact.name}
-                title={contact.name}
-                className="rounded-circle friend-image"
-            />
-            {contact.name} | {contact.email} | <Button status= {contact.status.toString()} id={contact._id}/>
-        </li>
+    const list = contacts.map(contact =>
+        <Alert color="primary" key={contact._id}>
+            <Row>
+                <Col className="contact-name">{contact.name}</Col>
+                <Col><Button status={contact.status.toString()} id={contact._id} /></Col>
+            </Row>
+        </Alert >
     );
     return (
         <>
-        {contacts.length > 0 && <ul className="contact">{list}</ul> }
-        {contacts.length === 0 && <span>Sorry you don't have any friends</span>}
+            <Row className="contacts-title">
+                <Col><h5>Contacts:</h5></Col>
+                <Col><AddContactModal {...props.user} /></Col>
+            </Row>
+            {contacts.length > 0 && <>{list}</>}
+            {contacts.length === 0 && <span>Sorry you don't have any friends</span>}
         </>
     )
 }

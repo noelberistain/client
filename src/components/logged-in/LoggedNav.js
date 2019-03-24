@@ -1,6 +1,7 @@
 //NAVBAR COMPONENT
 
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import { Col, Container, Nav, NavItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -15,24 +16,24 @@ class InitialNav extends Component {
 
     render() {
         return (
-            <Fragment>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav ml-auto" id="init">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/home">
-                                    HOME
-                            </Link>
-                            </li> 
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/" onClick={this.onLogout.bind(this)}>
-                                    Logout
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </Fragment>
+            <Container>
+                {/* <Row> */}
+                    <Nav pills >
+                        <Col xs="6">
+                            <NavItem color="primary">
+                                    <Link disabled className="nav-link" to="/home">HOME</Link>
+                            </NavItem>
+                        </Col>
+                        <Col xs="6">
+                            <NavItem color="primary">
+                                    <Link className="nav-link" to="/" onClick={this.onLogout.bind(this)}>
+                                        Logout
+                                        </Link>
+                            </NavItem>
+                        </Col>
+                    </Nav>
+                {/* </Row> */}
+            </Container>
         );
     }
 }

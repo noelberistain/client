@@ -29,12 +29,12 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         };
-        
+
         this.props.loginUser(user, this.props.history);
     };
 
     componentWillReceiveProps(nextProps) {
-        
+
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
@@ -42,12 +42,11 @@ class Login extends Component {
         }
     }
 
-    
     render() {
 
         const { errors } = this.state;
         return <>
-        <InitNav/>
+            <InitNav />
             <div className="container" id="container">
                 <h2 style={{ marginBottom: "40px" }}>Login</h2>
                 <form onSubmit={this.handleSubmit}>
@@ -81,11 +80,11 @@ class Login extends Component {
                     <div className="form-group">
                         <button type="submit" className='btn btn-primary'>
                             Login User
-            </button>
+                        </button>
                     </div>
                 </form>
             </div>
-</>
+        </>
     }
 }
 
@@ -101,6 +100,6 @@ Login.propTypes = {
 // })
 
 export default connect(state => ({
-    auth:state.auth,
-    errors:state.errors
+    auth: state.auth,
+    errors: state.errors
 }), { loginUser })(Login)
