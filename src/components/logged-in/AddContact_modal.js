@@ -67,7 +67,7 @@ class AddContactModal extends Component {
                 >
                     <ModalHeader toggle={this.toggle}>Add Contact:</ModalHeader>
                     <ModalBody>
-                        <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={e=>e.preventDefault()}>
                             <FormGroup>
                                 <Label for="exampleEmail">Email</Label>
                                 <Input

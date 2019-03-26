@@ -54,24 +54,24 @@
 
     // render() {
 
-    //     return (
-    //         <div>
-    //             <Form> 
-                    {/* onSubmit={this.handleSubmit}> */}
-                    {/* <FormGroup>
-                        <Label for="exampleEmail">Email</Label>
-                        <Input
-                            type="email"
-                            name="email"
-                            placeholder="right@mail.com"
-                            onChange={this.handleInputChange}
-                            value={this.state.email} />
-                    </FormGroup>
-                    <Button onClick={this.handleSubmit}>Invite</Button>
-                </Form>
-            </div>
-        );
-    } */}
+//         return (
+//             <div>
+//                 <Form> 
+//                     onSubmit={this.handleSubmit}>
+//                     <FormGroup>
+//                         <Label for="exampleEmail">Email</Label>
+//                         <Input
+//                             type="email"
+//                             name="email"
+//                             placeholder="right@mail.com"
+//                             onChange={this.handleInputChange}
+//                             value={this.state.email} />
+//                     </FormGroup>
+//                     <Button onClick={this.handleSubmit}>Invite</Button>
+//                 </Form>
+//             </div>
+//         );
+//     }
 // }
 // AddContact.propTypes = {
 //     addFriend: PropTypes.func.isRequired,

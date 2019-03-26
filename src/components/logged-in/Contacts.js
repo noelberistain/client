@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Col} from "reactstrap";
+import {Col, Row} from "reactstrap";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 // import AddContact from "./AddContact";
@@ -16,13 +16,13 @@ class Contacts extends Component {
     render() {
         
         return (
-            <>
+            <Row ref={this.inputText}>
                 <Col sm={{size:"12"}} md={{size:"5"}}>
                     <Contact {...this.props.contacts} {...this.props.user} />
                 </Col>
-                <Col sm={{size:12}} md={{size:"7"}} className="chatBox">
+                <Col  sm={{size:12}} md={{size:"7"}} className="chatBox">
                 </Col>
-            </>
+            </Row>
         );
     }
 }

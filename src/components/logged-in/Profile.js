@@ -24,9 +24,7 @@ export class Profile extends Component {
                         </Col>
                     </Row>
                 <Container>
-                    <Row>
                         <Contacts user={this.props} />
-                    </Row>
                 </Container>
         </Container>;
     }

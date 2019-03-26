@@ -5,7 +5,7 @@ import {
     SET_CURRENT_USER,
     ADD_FRIEND,
     GET_FRIENDS,
-    CONTACTS_LOADING
+    CONTACTS_LOADING,
 } from "./types";
 import setAuthToken from "../setAuthToken";
 import { delete_cookie } from "sfcookies";
@@ -73,9 +73,15 @@ export const getFriends = () => async dispatch => {
     });
 };
 
-export const responseFriendship = (data) => {
-    axios.post("api/notification/responseFriendship", data)
-    .then(data=>console.log(data))
+export const responseFriendship = data => async dispatch => {
+    const newConversation = () => axios.post("/api/notification/responseFriendship", data)
+    await newConversation()
+}
+
+export const getConversation = async contact => {
+    const req4Conv = () => axios.get("/api/notification/getConversation",{params:{contact}})
+    const convID = await req4Conv()
+    return convID;
 }
 
 export const setContactsLoading = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, Col, Row } from "reactstrap";
 import Button from './FriendButton';
 // import AddContact from './AddContact';
-import AddContactModal from './Modal';
+import AddContactModal from './AddContact_modal';
 
 export default function Contact(props) {
     const contacts = props.contacts
