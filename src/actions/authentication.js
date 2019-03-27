@@ -6,6 +6,7 @@ import {
     ADD_FRIEND,
     GET_FRIENDS,
     CONTACTS_LOADING,
+    GET_CONVERSATION_ID,
 } from "./types";
 import setAuthToken from "../setAuthToken";
 import { delete_cookie } from "sfcookies";
@@ -51,6 +52,7 @@ export const loginUser = (user, history) => async dispatch => {
             });
         });
 };
+
 export const setCurrentUser = info => {
     return {
         type: SET_CURRENT_USER,
@@ -78,10 +80,21 @@ export const responseFriendship = data => async dispatch => {
     await newConversation()
 }
 
-export const getConversation = async contact => {
-    const req4Conv = () => axios.get("/api/notification/getConversation",{params:{contact}})
-    const convID = await req4Conv()
-    return convID;
+export const getConversation = contact => async dispatch =>{
+    const req4Conv = () => axios.get("/api/notification/getConversation")
+    const response = await req4Conv()
+    const twoParticipants = response.data.filter(conversation => conversation.participants.length === 2);
+    const theOne = twoParticipants.filter(participant => participant.participants.includes(contact))
+    const {_id} = theOne[0]
+    const payload = { _id , contact}
+    dispatch({
+        type: GET_CONVERSATION_ID,
+        payload: payload
+    })
+}
+
+export const createMessage = (convID,content,contact) => {
+	axios.post("/api/notification/createMessage", {convID,content,contact})
 }
 
 export const setContactsLoading = () => {

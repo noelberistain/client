@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button, ButtonGroup } from "reactstrap"
-import MessageBox from "./MessageBox";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 
 import { responseFriendship, getConversation } from "../../actions/authentication"
 
 function FriendButton (props) {
-
+    
     const { status, id } = props;
     const contactID = id;
     const handleSubmit = e => {
@@ -16,20 +15,10 @@ function FriendButton (props) {
         props.responseFriendship({ value, contactID });
     };
 
-    const startConversation = async (e)=>{
+    function startConversation (e){
         e.preventDefault();
-        // // --------------------------------------------------------//
-        // let convID=''                                              //  
-        // const {data} = ( convID = await getConversation(contactID)) //
-        // console.log(data)                                          //
-        // //---------------------------------------------------------//
-
-        const conv = await getConversation(contactID);
-        const convID = conv.data; // conversation ID
-        console.log(convID)
-        return <MessageBox/>
+        props.getConversation(contactID);
     }
-
     return (
         <>
             {status === 'false' &&
@@ -57,7 +46,8 @@ function FriendButton (props) {
 
 FriendButton.propTypes ={
     responseFriendship: PropTypes.func.isRequired,
-    conversations: PropTypes.object.isRequired
+    conversations: PropTypes.object.isRequired,
+    // conversationID: PropTypes.string
 }
 
 export default connect(state =>({conversations: state.conversations}),{getConversation, responseFriendship})(FriendButton);
