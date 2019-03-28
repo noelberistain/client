@@ -86,7 +86,9 @@ export const getConversation = contact => async dispatch =>{
     const twoParticipants = response.data.filter(conversation => conversation.participants.length === 2);
     const theOne = twoParticipants.filter(participant => participant.participants.includes(contact))
     const {_id} = theOne[0]
-    const payload = { _id , contact}
+    const payload = { _id , contact};
+    
+    getMessages(_id,contact)
     dispatch({
         type: GET_CONVERSATION_ID,
         payload: payload
@@ -94,7 +96,14 @@ export const getConversation = contact => async dispatch =>{
 }
 
 export const createMessage = (convID,content,contact) => {
-	axios.post("/api/notification/createMessage", {convID,content,contact})
+    axios.post("/api/notification/createMessage", {convID,content,contact});
+};
+
+export const getMessages = async (id,contact) => {
+    const getAll = () => axios.get("api/notification/getMessages", {params:{id,contact}})
+    const messages = await getAll()
+	console.log("TCL: messages", messages.data)
+
 }
 
 export const setContactsLoading = () => {

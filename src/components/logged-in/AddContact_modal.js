@@ -58,7 +58,7 @@ class AddContactModal extends Component {
         return (
             <div className="add-contact">
                 <Button size="sm" color="primary" onClick={this.toggle}>
-                    Add Contact
+                    Contact
                 </Button>
                 <Modal
                     isOpen={this.state.modal}

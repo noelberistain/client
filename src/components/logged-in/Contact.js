@@ -1,8 +1,8 @@
 import React from 'react';
 import { Alert, Col, Row } from "reactstrap";
 import Button from './FriendButton';
-// import AddContact from './AddContact';
 import AddContactModal from './AddContact_modal';
+import GroupModal from './GroupModal';
 
 export default function Contact(props) {
     const contacts = props.contacts
@@ -18,6 +18,7 @@ export default function Contact(props) {
         <>
             <Row className="contacts-title">
                 <Col><h5>Contacts:</h5></Col>
+                <Col><GroupModal {...props.user}/></Col>
                 <Col><AddContactModal {...props.user} /></Col>
             </Row>
             {contacts.length > 0 && <>{list}</>}

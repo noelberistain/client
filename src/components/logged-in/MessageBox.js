@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import SingleMessage from './Message';
 import { Button, Container, Input, InputGroup, Row } from 'reactstrap';
 import { createMessage } from '../../actions/authentication';
 
@@ -18,25 +19,44 @@ class MessageBox extends Component {
     }
 
     sendMessage(obj) {
-        const {_id, contact} = obj.conversations.conversationID;
-        
-        if(this.state.message === '' || _id.length === 0){
-            console.log("do nothing / empty input / have to select a conversation")
-        }
-        else if(_id.length > 0){
-            const {message} = this.state
-            createMessage(_id,message,contact)
-            this.setState({
-                message:''
-            })
+        if (obj.conversations.conversationID) {
+            const { _id, contact } = obj.conversations.conversationID;
+            if (this.state.message === '' || _id.length === 0) {
+                console.log("do nothing / empty message")
+            }
+            else if (_id.length > 0) {
+                const { message } = this.state
+                createMessage(_id, message, contact)
+                this.setState({
+                    message: ''
+                })
+            }
+        } else {
+            console.log("should click on a chat button")
         }
     }
 
     render() {
+        const { conversationID } = this.props.conversations
+
         return (
             <Container className="message-box">
                 <Row> MESSAGES BOX</Row>
-                <Row>
+                <Row className="fixedMessages">
+                    <Row>
+                        <SingleMessage />
+                        { conversationID._id && <InputGroup className="button-send">
+                            <Input
+                                type="text"
+                                name="message"
+                                placeholder="write a message..."
+                                onChange={this.handleInputChange.bind(this)}
+                                value={this.state.message} />
+                            <Button color="secondary" onClick={() => this.sendMessage(this.props)}>Send Message</Button>
+                        </InputGroup>}
+                    </Row>
+                </Row>
+                {/* <Row>
                     <InputGroup>
                         <Input
                             type="text"
@@ -46,7 +66,7 @@ class MessageBox extends Component {
                             value={this.state.message} />
                         <Button color="secondary" onClick={() => this.sendMessage(this.props)}>Send Message</Button>
                     </InputGroup>
-                </Row>
+                </Row> */}
             </Container>
         )
     }
@@ -54,8 +74,8 @@ class MessageBox extends Component {
 
 MessageBox.propTypes = {
     conversations: PropTypes.object.isRequired,
-    // conversationID: PropTypes.string
+    messages: PropTypes.object.isRequired
 }
 
 export default connect(state => (
-    {conversations: state.conversations}))(MessageBox)
+    { conversations: state.conversations, messages: state.messages }))(MessageBox)

@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 import { getFriends, getConversation } from "./authentication";
-import { CREATE_CONVERSATION, GET_CONVERSATION_ID } from "./types";
+import { CREATE_CONVERSATION, GET_CONVERSATION_ID, GET_MESSAGES, NEW_MESSAGE } from "./types";
 // import { GET_FRIENDS } from "./types";
 
 // export const socket = io({autoConnect:false},{transports:['websocket']});
@@ -24,10 +24,9 @@ export function initSocket(dispatch) {
             payload: data
         })
         dispatch(getFriends())
-    })
+    })  
 
     socket.on('get_conversation_id', id => {
-	console.log("TCL: initSocket -> id", id)
         dispatch(getConversation())
         dispatch({
             type: GET_CONVERSATION_ID,
@@ -35,13 +34,19 @@ export function initSocket(dispatch) {
         })
     })
 
-    socket.on('newMessage',(data)=>{
+    socket.on("newMessage",data =>{
 		console.log("TCL: initSocket -> data", data)
-        // console.log(data.id) //should be room id
-        // console.log(data.user) // should be active user id
-        // console.log(data.contact) // should be contact id
-        // console.log(data.message) // contains the text/message
+        dispatch({
+            type: NEW_MESSAGE,
+            payload: data
+        })
+    })
 
+    socket.on('getMessages',(messages)=>{
+        dispatch({
+            type: GET_MESSAGES,
+            payload: messages
+        })
     })
 
     socket.on('disconnect', () => {
