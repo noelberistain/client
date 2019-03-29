@@ -1,6 +1,6 @@
 import io from "socket.io-client";
-import { getFriends, getConversation } from "./authentication";
-import { CREATE_CONVERSATION, GET_CONVERSATION_ID, GET_MESSAGES, NEW_MESSAGE } from "./types";
+import { getFriends, getConversation, getGroups } from "./authentication";
+import { CREATE_CONVERSATION, GET_CONVERSATION_ID, GET_MESSAGES, NEW_MESSAGE, CREATE_GROUP, GET_GROUPS } from "./types";
 // import { GET_FRIENDS } from "./types";
 
 // export const socket = io({autoConnect:false},{transports:['websocket']});
@@ -48,6 +48,23 @@ export function initSocket(dispatch) {
             payload: messages
         })
     })
+
+    socket.on('createGroup', data =>{
+        dispatch({
+            type: CREATE_GROUP,
+            payload: data
+        })
+        dispatch(getGroups())
+    })
+
+    socket.on('loadGroups', data=>{
+		console.log("TCL: initSocket -> data", data)
+        dispatch({
+            type: GET_GROUPS,
+            payload: data
+        })
+    })
+
 
     socket.on('disconnect', () => {
         console.log('Disconnected')

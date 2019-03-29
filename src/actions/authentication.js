@@ -7,6 +7,11 @@ import {
     GET_FRIENDS,
     CONTACTS_LOADING,
     GET_CONVERSATION_ID,
+    ADD_GROUP_CONTACT,
+    REMOVE_GROUP_CONTACT,
+    ADD_NAME_GROUP,
+    RESTORE_DEFAULT,
+    GET_GROUPS
 } from "./types";
 import setAuthToken from "../setAuthToken";
 import { delete_cookie } from "sfcookies";
@@ -80,7 +85,7 @@ export const responseFriendship = data => async dispatch => {
     await newConversation()
 }
 
-export const getConversation = contact => async dispatch =>{
+export const getConversation = contact => async dispatch => {
     const req4Conv = () => axios.get("/api/notification/getConversation")
     const response = await req4Conv()
     const twoParticipants = response.data.filter(conversation => conversation.participants.length === 2);
@@ -103,7 +108,6 @@ export const getMessages = async (id,contact) => {
     const getAll = () => axios.get("api/notification/getMessages", {params:{id,contact}})
     const messages = await getAll()
 	console.log("TCL: messages", messages.data)
-
 }
 
 export const setContactsLoading = () => {
@@ -136,3 +140,47 @@ export const logoutUser = history => dispatch => {
     history.push("/");
     socket.close()
 };
+
+export const addToGroup = id => dispatch=> {    
+    dispatch({
+        type: ADD_GROUP_CONTACT,
+        payload: id
+    })
+}
+
+export const removeFromGroup = id => dispatch => {
+    dispatch({
+        type: REMOVE_GROUP_CONTACT,
+        payload: id
+    })
+}
+
+export const setNameGroup = name => dispatch => {    
+    dispatch({
+        type: ADD_NAME_GROUP,
+        payload: name
+    })
+}
+
+export const createGroupConversation = (name, list) => {
+    axios.post("/api/notification/createGroup", {name,list})
+	// console.log("TCL: response.data", response.data)
+    // dispatch(reset())
+}
+
+export const reset = () => dispatch =>{
+    dispatch({
+        type: RESTORE_DEFAULT
+    })
+}
+
+export const getGroups = () => async dispatch => {
+    const sendRequest = () => axios.get("/api/notification/getGroups");
+    const response = await sendRequest();
+    const groups = response.data.filter(conversation => conversation.participants.length > 2);
+    const theOnes = groups.filter(conv => conv.groupName)
+    dispatch({
+        type:GET_GROUPS,
+        payload: theOnes
+    })
+}

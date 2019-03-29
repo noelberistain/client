@@ -13,7 +13,6 @@ class Contacts extends Component {
     }
     
     render() {
-        
         return (
             <Row >
                 <Col sm={{size:"12"}} md={{size:"5"}}>
@@ -36,4 +35,7 @@ Contacts.propTypes = {
 // const mapStateToProps = state => ({
 //     contatcs: state.contacts
 // })
-export default connect(state => ({ contacts: state.contacts, conversationID: state.conversationID }), { getFriends })(Contacts);
+export default connect(state => ({ 
+    contacts: state.contacts,
+    conversationID: state.conversationID 
+}), { getFriends })(Contacts);

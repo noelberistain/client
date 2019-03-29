@@ -14,19 +14,38 @@ const invite = {
     'backgroundColor':' #d4edda',
     'borderColor': '#c3e6cb'
 }
-    const list = contacts.map(contact =>
+
+    const list = contacts.map(contact => (
         <li key={contact._id}>
             <Row>
                 <Col className="contact-name">{contact.name}</Col>
-                <Col sm="6"><Button style={invite} size="sm" value={contact._id} onClick={add}>un-Invite</Button><Button style={un_Invite} size="sm" value={contact._id} onClick={remove}>Unfriend</Button></Col>
+                <Col sm="6">
+                    <Button
+                        style={invite}
+                        size="sm"
+                        value={contact._id}
+                        onClick={add}
+                    >
+                        Invite
+            </Button>
+                    <Button
+                        style={un_Invite}
+                        size="sm"
+                        value={contact._id}
+                        onClick={remove}
+                    >
+                        un-invite
+            </Button>
+                </Col>
             </Row>
         </li>
-    );
+    ));
 
     return (
         <>
-            {contacts.length > 0 && <ul>{list}</ul>}
-            {contacts.length === 0 && <span>Sorry you don't have any friends</span>}
+            <ul>{list}</ul>
+            {/* {contacts.length > 0 && <ul>{list}</ul>}
+            {contacts.length === 0 && <span>Sorry you don't have any friends</span>} */}
         </>
     )
 }
