@@ -63,6 +63,7 @@ class GroupModal extends Component {
 
     render() {
         const { contacts } = this.props;
+        console.log(contacts.contacts)
         return (
             <div className="add-contact">
                 {contacts.contacts.length>1&&this.button()}

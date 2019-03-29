@@ -63,6 +63,7 @@ export function initSocket(dispatch) {
             type: GET_GROUPS,
             payload: data
         })
+        dispatch(getGroups())
     })
 
 
