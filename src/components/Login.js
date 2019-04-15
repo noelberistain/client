@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/authentication';
 import classnames from 'classnames';
 import InitNav from "./InitNav";
+import { FormattedMessage } from "react-intl";
 
 class Login extends Component {
 
@@ -48,7 +49,11 @@ class Login extends Component {
         return <>
             <InitNav />
             <div className="container" id="container">
-                <h2 style={{ marginBottom: "40px" }}>Login</h2>
+                <h2 style={{ marginBottom: "40px" }}>
+                    <FormattedMessage 
+                    id="login-title"
+                    defaultMessage="Login"/>
+                </h2>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <input
@@ -79,7 +84,9 @@ class Login extends Component {
                     </div>
                     <div className="form-group">
                         <button type="submit" className='btn btn-primary'>
-                            Login User
+                            <FormattedMessage 
+                            id="login-btn"
+                            defaultMessage="Register User"/>
                         </button>
                     </div>
                 </form>

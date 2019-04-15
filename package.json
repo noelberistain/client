@@ -1,18 +1,6 @@
 {
-  "name": "front-user-auth",
-  "version": "0.1.0",
-  "scripts": {
-    "start": "react-scripts start"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "name": "frontclient",
+  "version": "0.0.1-1",
   "devDependencies": {
     "axios": "^0.18.0",
     "jwt-decode": "^2.2.0",
@@ -23,14 +11,29 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
     "sfcookies": "^1.0.2"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
     "http-proxy-middleware": "^0.19.1",
     "react-bootstrap": "^1.0.0-beta.5",
+    "react-intl": "^2.8.0",
     "reactstrap": "^7.1.0",
     "socket.io-client": "^2.2.0"
-  }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

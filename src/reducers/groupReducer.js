@@ -5,13 +5,15 @@ import {
     RESTORE_DEFAULT,
     CREATE_GROUP,
     GET_GROUPS,
+    GET_GROUP_MESSAGES,
     NOTHING
 } from "../actions/types";
 
 const initialState = {
     groupName: "Group Name",
     groupContacts: [],
-    allGroups: []
+    allGroups: [],
+    groupMessages:''
 };
 
 export default function (state = initialState, action) {
@@ -50,6 +52,11 @@ export default function (state = initialState, action) {
                 allGroups: action.payload
                 // allGroups: [...state.allGroups, action.payload]
             };
+        case GET_GROUP_MESSAGES:
+            return {
+                ...state,
+                groupMessages: action.payload
+            }
         case NOTHING:
             console.log("NADAAAAAA")
             return {

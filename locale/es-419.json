@@ -1,0 +1,43 @@
+{
+    "btn-sign-in":"Entrar",
+    "btn-sign-up":"Registrate",
+    "login-title":"Iniciar Sesion",
+    "login-btn":"Entrar",
+
+    "reg-title":"Registrarse",
+    "reg-btn":"Registrate",
+    "slct-lang-title":"Seleccciona Lenguaje",
+    "slct-lang-es":"Spanish",
+
+    "add-contact-modal-btn":"Contacto",
+    "add-contact-modal-header":"Invitar",
+    "add-contact-modal-invite-btn":"Invitar",
+    "add-contact-modal-cancel":"Cancelar",
+    "add-contact-modal-email-label":"Email",
+
+    "contact-title":"Contactos",
+    "contact-span-no-friends":"No tienes ningun contacto aún",
+    "contact-groups-title":"Grupos",
+
+    "friend-btn-false-stat":"Esperando",
+    "friend-btn-false-stat-disabled":"Respuesta",
+    "friend-btn-pending-stat-accept":"Aceptar",
+    "friend-btn-pending-stat-reject":"Rechazar",
+    "friend-btn-true-stat-chat":"Chat",
+    "friend-btn-true-stat-unfriend":"Eliminar",
+
+    "friend-list-btn-invite":"Invitar",
+    "friend-list-btn-un-invite":"Remover",
+
+    "grp-list-chat":"Chat",
+    "grp-modal-btn":"Grupo",
+
+    "grp-modal-btn-save":"Crear",
+
+    "logged-nav-home":"Inicio",
+    "logged-nav-logout":"Salir",
+
+    "message-box-send-message":"Enviar",
+    
+    "profile-hello":"Hola "
+}

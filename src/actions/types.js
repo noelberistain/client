@@ -1,5 +1,6 @@
 export const GET_ERRORS = 'GET_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 export const CONTACTS_LOADING = 'CONTACTS_LOADING';
 
@@ -19,6 +20,7 @@ export const REMOVE_GROUP_CONTACT = 'REMOVE_GROUP_CONTACT';
 export const RESTORE_DEFAULT = 'RESTORE_DEFAULT';
 export const CREATE_GROUP = 'CREATE_GROUP';
 export const GET_GROUPS = 'GET_GROUPS';
+export const GET_GROUP_MESSAGES = 'GET_GROUP_MESSAGES';
 
-
+export const SET_LANG = 'SET_LANG';
 export const NOTHING = 'NOTHING';

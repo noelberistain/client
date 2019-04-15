@@ -8,6 +8,8 @@ import { withRouter } from "react-router-dom";
 import { registerUser } from "../actions/authentication";
 import classnames from "classnames";
 import InitNav from "./InitNav";
+import SelectLang from "./SelectLang";
+import { FormattedMessage } from "react-intl";
 
 class Register extends Component {
     constructor() {
@@ -17,11 +19,13 @@ class Register extends Component {
             email: "",
             password: "",
             password_confirm: "",
-            errors: {}
+            errors: {},
+            preferredLang:"",
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.setPlang = this.setPlang.bind(this);
     }
 
     handleInputChange(e) {
@@ -36,18 +40,38 @@ class Register extends Component {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-            password_confirm: this.state.password_confirm
+            password_confirm: this.state.password_confirm,
+            preferredLang: this.state.preferredLang
         };
-
         this.props.registerUser(user, this.props.history);
     }
 
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+    
+    setPlang(lang){
+        this.setState({
+            preferredLang: lang
+        })
+    }
+    
     render() {
-        const { name, email, password, password_confirm, errors} = this.state;
-        return <>
+        let { name, email, password, password_confirm, errors, preferredLang} = this.state;
+    return <>
         <InitNav/>
             <div className="container" id="container">
-                <h2 style={{ marginBottom: "40px" }}>Registration</h2>
+                <h2 style={{ marginBottom: "40px" }}>
+                    <FormattedMessage
+                    id="reg-title"
+                    defaultMessage="Register"
+                    />
+                    </h2>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <input
@@ -60,6 +84,7 @@ class Register extends Component {
                             onChange={this.handleInputChange}
                             value={name}
                         />
+                        {/* <div style={{"border":"1px solid black"}}>errors name: {errors.name}</div> */}
                         {errors.name && (
                             <div className="invalid-feedback">{errors.name}</div>
                         )}
@@ -111,12 +136,16 @@ class Register extends Component {
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">
-                            Register User
-            </button>
+                            <FormattedMessage
+                                id="reg-btn"
+                                defaultMessage="Register User"
+                            />
+                    </button>
+            {password.length>0 && <SelectLang plang={preferredLang} set={this.setPlang}/>}
                     </div>
                 </form>
             </div>
-   </>
+    </>
     }
 }
 

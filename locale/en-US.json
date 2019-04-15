@@ -1,0 +1,44 @@
+{
+    "btn-sign-in":"Sign In",
+    "btn-sign-up":"Sign Up",
+    "login-title":"Login",
+    "login-btn":"Login User",
+
+    "reg-title":"Registration",
+    "reg-btn":"Register User",
+    "slct-lang-title":"Select Lang",
+    "slct-lang-en":"English",
+    
+    "add-contact-modal-btn":"Contact",
+    "add-contact-modal-header":"Add contact",
+    "add-contact-modal-invite-btn":"Invite",
+    "add-contact-modal-cancel":"Cancel",
+    "add-contact-modal-email-label":"Email",
+
+    "contact-title":"Contacts",
+    "contact-span-no-friends":"Sorry you don't have any friends",
+    "contact-groups-title":"Groups",
+    
+    "friend-btn-false-stat":"Pending",
+    "friend-btn-false-stat-disabled":"Friendship",
+    "friend-btn-pending-stat-accept":"Accept",
+    "friend-btn-pending-stat-reject":"Reject",
+    "friend-btn-true-stat-chat":"Chat",
+    "friend-btn-true-stat-unfriend":"Unfriend",
+
+    "friend-list-btn-invite":"Invite",
+    "friend-list-btn-un-invite":"un-invite",
+
+    "grp-list-chat":"Chat",
+
+    "grp-modal-btn-save":"Save",
+    "grp-modal-btn":"Group",
+
+    "logged-nav-home":"Home",
+    "logged-nav-logout":"Logout",
+
+    "message-box-send-message":"Send",
+    
+    "profile-hello":"Hello "
+}
+

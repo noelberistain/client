@@ -10,6 +10,10 @@ a {
     margin-bottom: 0.5%;
 }
 
+.btn-group-sm{
+    margin: 0% 0% 0% 30%;
+}
+
 .button-send {    
     height: fit-content;
     margin: 68% 0% 0% 4%;
@@ -55,7 +59,7 @@ div.media {
 .fixedMessages{
     border: 1px solid black;
     height: 30rem;
-    width: 38.5rem; 
+    /* width: 38.5rem;  */
     padding:3px;
     overflow: auto;
 }
