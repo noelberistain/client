@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: noelberistain/react
+        image: noelberistain/react:latest
         imagePullPolicy: Always
         lifecycle:
           preStop:
