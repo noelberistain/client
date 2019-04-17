@@ -51,7 +51,7 @@ export function initSocket(dispatch) {
         });
     });
 
-    socket.on("getMessages", messages => {        
+    socket.on("getMessages", messages => {
         dispatch({
             type: GET_MESSAGES,
             payload: messages

@@ -12,7 +12,7 @@ import {
     ADD_NAME_GROUP,
     RESTORE_DEFAULT,
     GET_GROUPS,
-    NOTHING,
+    // NOTHING,
     SET_LANG,
     USER_LOGOUT,
     GET_GROUP_MESSAGES
@@ -101,11 +101,14 @@ export const responseFriendship = data => async dispatch => {
 };
 
 export const getConversation = contact => async dispatch => {
+	console.log("TCL: contact", contact)
+    
     const req4Conv = () => axios.get("/api/notification/getConversation");
     const { data } = await req4Conv();
     const twoParticipants = data.filter(
         conversation => conversation.participants.length === 2
-    );
+        );
+    
     const theOne = twoParticipants.filter(participant =>
         participant.participants.includes(contact)
     );
@@ -133,14 +136,12 @@ export const createMessage = (convID, content, contact) => {
 export const getMessages = (id, contact) => async dispatch => {
     const getAll = () =>
         axios.get("api/notification/getMessages", { params: { id, contact } });
-    const { data } = await getAll();
-    console.log("TCL: messages", data);
-    dispatch({
-        type: NOTHING
-    });
+    await getAll();
 };
 
 export const getGroupMessages = groupID => async dispatch => {
+	console.log("TCL: groupID", groupID)
+    
     await axios.get("api/notification/getGroupMessages", {
         params: { groupID }
     });
