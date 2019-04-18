@@ -37,8 +37,11 @@ export const registerUser = (user, history) => dispatch => {
         });
 };
 
-const sendUser = newUser => {
-    axios.post("/api/notification/adduser", newUser);
+// const sendUser = newUser => {
+//     axios.post("/api/notification/adduser", newUser);
+// };
+const sendUser = async newUser => {
+    await axios.post("/api/notification/adduser", newUser);
 };
 
 export const loginUser = (user, history) => async dispatch => {
