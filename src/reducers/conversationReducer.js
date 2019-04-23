@@ -12,6 +12,7 @@ export default function (state = initialState, action) {
     switch (action.type) {
 
         case CREATE_CONVERSATION:
+        console.log("CREATE CONVERSATION with payload = ", action.payload)
             return {
                 ...state,
                 conversations: [...state.conversations, action.payload]

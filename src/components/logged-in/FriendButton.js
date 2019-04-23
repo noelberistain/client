@@ -16,6 +16,7 @@ function FriendButton(props) {
     const handleSubmit = e => {
         e.preventDefault();
         const { value } = e.target;
+		console.log("TCL: FriendButton -> value", value)
         props.responseFriendship({ value, contactID });
     };
 

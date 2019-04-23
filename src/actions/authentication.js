@@ -42,15 +42,11 @@ const sendUser = newUser => {
 };
 
 export const loginUser = (user, history) => async dispatch => {
-    // const getData = () => axios.post("/api/auth/login",user);
-    // const response = await getData();
-    // dispatch(setCurrentUser(response.data))
-    // socket.open()
-    // history.push("/home")
 
-    axios
+    await axios
         .post("/api/auth/login", user)
         .then(res => {
+            socket.open()
             dispatch(setCurrentUser(res.data));
             history.push("/home");
         })
@@ -62,10 +58,25 @@ export const loginUser = (user, history) => async dispatch => {
         });
 };
 
+export const logoutUser = history => dispatch => {
+    delete_cookie("jwToken");
+    setAuthToken(false);
+    dispatch(setCurrentUser({}));
+    dispatch({ type: USER_LOGOUT });
+    history.push("/");
+    // socket.close();
+    axios.get("/api/auth/logout");
+};
+
 export const setCurrentUser = info => {
+    const {success, ...user} = info;
+    const payload = {
+        user,
+        success
+    }
     return {
         type: SET_CURRENT_USER,
-        payload: info.success
+        payload
     };
 };
 
@@ -94,6 +105,7 @@ export const getFriends = () => async dispatch => {
 };
 
 export const responseFriendship = data => async dispatch => {
+	console.log("TCL: data", data)
     //data should have a status/value and a contactID
     const newConversation = () =>
         axios.post("/api/notification/responseFriendship", data);
@@ -154,12 +166,14 @@ export const setContactsLoading = () => {
 };
 
 export const addFriend = info => async dispatch => {
-    console.log("TCL: info", info);
+    console.log("TCL: info", info.data);
 
     const sendFriend = () =>
         axios.post("/api/notification/addContact", info.data);
     const newFriend = await sendFriend(); // NEW FRIEND represents user object at notification DB
+	console.log("TCL: newFriend", newFriend)
     const { contacts } = newFriend.data; // user id and contacts array with friend's ids and status
+	console.log("TCL: newFriend.data", newFriend.data)
     // user contacts array
     contacts.forEach(value => {
         if (value.contactID === info.data._id) info.data.status = value.status;
@@ -171,15 +185,6 @@ export const addFriend = info => async dispatch => {
         type: ADD_FRIEND,
         payload: fullFriend
     });
-};
-
-export const logoutUser = history => dispatch => {
-    delete_cookie("jwToken");
-    setAuthToken(false);
-    dispatch(setCurrentUser({}));
-    dispatch({ type: USER_LOGOUT });
-    history.push("/");
-    socket.close();
 };
 
 export const addToGroup = id => dispatch => {

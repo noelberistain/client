@@ -43,6 +43,9 @@ class Register extends Component {
             password_confirm: this.state.password_confirm,
             preferredLang: this.state.preferredLang
         };
+        console.log(user)
+        console.log(this.props.history)
+        console.log(this.props.registerUser)
         this.props.registerUser(user, this.props.history);
     }
 
